@@ -17,7 +17,7 @@ st.markdown(
 )
 
 # 🎮 Titel
-st.title("🔥 Zocker Modus aktiviert 🔥")
+st.title("Die beste Fundbrube der Welt")
 st.write("Willkommen zurück, GOTY")
 
 # Modell laden
