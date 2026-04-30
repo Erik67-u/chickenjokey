@@ -3,13 +3,13 @@ from ultralytics import YOLO
 from PIL import Image
 import numpy as np
 
-# 🎨 Styling
+# 🎨 Styling (schwarze Schrift + Hintergrund bleibt wie vorher)
 st.markdown(
     """
     <style>
     .stApp {
         background-color: #cd6090;
-        color: white;
+        color: black;
     }
     </style>
     """,
@@ -18,7 +18,7 @@ st.markdown(
 
 # 🎮 Titel
 st.title("🔥 Zocker Modus aktiviert 🔥")
-st.write("Willkommen zurück, GOTY 😎")
+st.write("Willkommen zurück, GOTY")
 
 # Modell laden
 @st.cache_resource
@@ -48,9 +48,15 @@ if uploaded_file is not None:
         label = model.names[cls_id]
         st.write(f"{label} ({conf:.2f})")
 
-# 🧨 Button
+# 🧠 Buttons
 st.markdown("---")
 
-if st.button("Drück mich, GOTY"):
-    st.success("Wuff Wuff 🐶")
-    st.write("Signal empfangen, GOTY! 🔥")
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("Das wollte ich schon immer sagen"):
+        st.success("Wir mögen sie richtig gerne Frau Klietsch")
+
+with col2:
+    if st.button("Respeckt Erweisung"):
+        st.success("Respeckt zum GOTY rechts neben mir")
