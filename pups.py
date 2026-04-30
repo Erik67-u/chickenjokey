@@ -8,7 +8,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: red;
+        background-color: #8b0000;
         color: white;
     }
     </style>
@@ -16,39 +16,44 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 🎮 Titel
+# 🎮 Titel + immer GOTY ansprechen
 st.title("🔥 Zocker Modus aktiviert 🔥")
+st.write("Willkommen zurück, GOTY 🐺")
 
-# Modell laden (vortrainiert)
+# Modell laden
 @st.cache_resource
 def load_model():
-    model = YOLO("yolov8n.pt")  # kleines, schnelles Modell
-    return model
+    return YOLO("yolov8n.pt")
 
 model = load_model()
-
-# Bild hochladen
-uploaded_file = st.file_uploader("Lade ein Bild hoch", type=["jpg", "jpeg", "png"])
+	#8b0000
+# 📸 Upload
+uploaded_file = st.file_uploader("Lade ein Bild hoch, GOTY", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
     image = Image.open(uploaded_file)
-    st.image(image, caption="Originalbild", use_column_width=True)
+    st.image(image, caption="Originalbild, GOTY", use_column_width=True)
 
-    # In numpy konvertieren
     img_array = np.array(image.convert("RGB"))
 
-    # YOLO Vorhersage
+    # YOLO Prediction
     results = model(img_array)
 
-    # Ergebnisbild mit Bounding Boxes
     result_img = results[0].plot()
 
-    st.image(result_img, caption="Erkannte Objekte", use_column_width=True)
+    st.image(result_img, caption="Erkannte Objekte, GOTY", use_column_width=True)
 
-    # Labels anzeigen
-    st.subheader("Erkannte Klassen:")
+    # Ergebnisse
+    st.subheader("Erkannte Klassen, GOTY:")
     for box in results[0].boxes:
         cls_id = int(box.cls[0])
         conf = float(box.conf[0])
         label = model.names[cls_id]
         st.write(f"{label} ({conf:.2f})")
+
+# 🐶 Wuff Button
+st.markdown("---")
+
+if st.button("drück mich GOTY"):
+    st.success("Wuff Wuff 🐶")
+    st.write("GOTY, der Hund hat gebellt: Wuff Wuff! 🔊")
